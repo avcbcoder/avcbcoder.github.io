@@ -9,7 +9,7 @@ const LeftPanel: React.FC = () => {
         <div className="relative mx-auto mb-4">
           <div className="w-20 h-20 mx-auto rounded-full bg-gray-200 dark:bg-gray-700 p-0.5">
             <img
-              src="/profile.jpg"
+              src="/anverma/profile.jpg"
               alt="Ankit Verma"
               className="w-full h-full rounded-full object-cover"
             />
