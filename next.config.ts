@@ -1,9 +1,10 @@
-const isGithubPages = process.env.DEPLOY_TARGET === "GH_PAGES";
+// const isGithubPages = process.env.DEPLOY_TARGET === "GH_PAGES";
+const isGithubPages = true;
 
 const nextConfig = {
   output: "export",
-  basePath: isGithubPages ? "/<REPO_NAME>" : "",
-  assetPrefix: isGithubPages ? "/<REPO_NAME>/" : "",
+  basePath: isGithubPages ? "/anverma" : "",
+  assetPrefix: isGithubPages ? "/anverma/" : "",
 };
 
 export default nextConfig;
