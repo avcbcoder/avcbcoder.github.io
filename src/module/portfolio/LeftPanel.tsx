@@ -9,7 +9,7 @@ const ProfileAvatar = () => {
     <div className="flex flex-col items-center">
       <div className="relative w-32 h-32">
         <Image
-          src={IS_PROD ? "/anverma" : "" + "/profile.jpg"}
+          src={(IS_PROD ? "/anverma" : "") + "/profile.jpg"}
           alt="Ankit Verma"
           className="rounded-full object-cover"
           layout="fill"

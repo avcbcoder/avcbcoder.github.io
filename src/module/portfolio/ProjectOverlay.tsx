@@ -18,7 +18,7 @@ const OverlayPreview = ({ overlayProject }: { overlayProject: any }) => {
       }}
     >
       <img
-        src={IS_PROD ? "/anverma" : "" + "/static/rehearsalgpt-landing.png"}
+        src={(IS_PROD ? "/anverma" : "") + "/static/rehearsalgpt-landing.png"}
         alt="Project preview"
         style={{
           width: "40vw",
