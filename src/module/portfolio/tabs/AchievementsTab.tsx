@@ -62,10 +62,10 @@ const AchievementsTab: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">
+        <h2 className="text-2xl font-bold text-gray-800 d2:text-white mb-1">
           Achievements & Awards
         </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-600 d2:text-gray-400">
           Recognition for excellence in engineering and competitive programming
         </p>
       </div>
@@ -76,41 +76,41 @@ const AchievementsTab: React.FC = () => {
         ))}
       </div>
 
-      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-gray-700 dark:to-gray-800 rounded-lg p-4 mt-6">
-        <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-3 flex items-center">
-          <Trophy className="w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
+      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 d2:from-gray-700 d2:to-gray-800 rounded-lg p-4 mt-6">
+        <h3 className="text-lg font-bold text-gray-800 d2:text-white mb-3 flex items-center">
+          <Trophy className="w-5 h-5 mr-2 text-gray-600 d2:text-gray-400" />
           Career Highlights
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="text-center">
-            <div className="text-lg font-bold text-gray-800 dark:text-white">
+            <div className="text-lg font-bold text-gray-800 d2:text-white">
               $2M+
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 d2:text-gray-400">
               Revenue Impact
             </div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-gray-800 dark:text-white">
+            <div className="text-lg font-bold text-gray-800 d2:text-white">
               100K+
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 d2:text-gray-400">
               Users Impacted
             </div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-gray-800 dark:text-white">
+            <div className="text-lg font-bold text-gray-800 d2:text-white">
               3+
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 d2:text-gray-400">
               Years Experience
             </div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-gray-800 dark:text-white">
+            <div className="text-lg font-bold text-gray-800 d2:text-white">
               20+
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 d2:text-gray-400">
               Technologies
             </div>
           </div>
@@ -130,26 +130,26 @@ const AchievementCard: React.FC<{ achievement: any }> = ({ achievement }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-600 hover:shadow-md transition-all duration-300">
+    <div className="bg-white d2:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-100 d2:border-gray-600 hover:shadow-md transition-all duration-300">
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
           <div className="flex items-center mb-1">
-            <div className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 mr-2">
+            <div className="p-1.5 rounded-lg bg-gray-100 d2:bg-gray-600 text-gray-600 d2:text-gray-400 mr-2">
               {achievement.icon}
             </div>
             <div>
-              <h3 className="text-sm font-bold text-gray-800 dark:text-white">
+              <h3 className="text-sm font-bold text-gray-800 d2:text-white">
                 {achievement.title}
               </h3>
-              <div className="flex items-center text-xs text-gray-600 dark:text-gray-400">
+              <div className="flex items-center text-xs text-gray-600 d2:text-gray-400">
                 <span className="mr-2">{achievement.year}</span>
-                <span className="px-1.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300">
+                <span className="px-1.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 d2:bg-gray-600 text-gray-700 d2:text-gray-300">
                   {achievement.category}
                 </span>
               </div>
             </div>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">
+          <p className="text-gray-600 d2:text-gray-400 text-xs leading-relaxed">
             {achievement.description}
           </p>
         </div>

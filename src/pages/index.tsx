@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { ThemeProvider } from "@/context/ThemeContext";
+// import { ThemeProvider } from "@/context/ThemeContext";
 import Portfolio from "@/module/portfolio";
 
 export default function Home() {
@@ -24,11 +24,11 @@ export default function Home() {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <ThemeProvider>
-        <main>
-          <Portfolio />
-        </main>
-      </ThemeProvider>
+      {/* <ThemeProvider> */}
+      <main>
+        <Portfolio />
+      </main>
+      {/* </ThemeProvider> */}
     </>
   );
 }

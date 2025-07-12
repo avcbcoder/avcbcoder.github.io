@@ -44,17 +44,17 @@ const ExperienceTab: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">
+        <h2 className="text-2xl font-bold text-gray-800 d2:text-white mb-1">
           Professional Experience
         </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-600 d2:text-gray-400">
           Building scalable systems at world-class companies
         </p>
       </div>
 
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-purple-200 to-green-200 dark:from-blue-800 dark:via-purple-800 dark:to-green-800"></div>
+        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-purple-200 to-green-200 d2:from-blue-800 d2:via-purple-800 d2:to-green-800"></div>
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
@@ -91,7 +91,7 @@ const TimelineItem: React.FC<{ experience: any; isLast: boolean }> = ({
     <div className="relative flex items-start">
       {/* Timeline dot */}
       <div
-        className={`relative z-10 flex items-center justify-center w-8 h-8 bg-white dark:bg-gray-800 border-2 ${
+        className={`relative z-10 flex items-center justify-center w-8 h-8 bg-white d2:bg-gray-800 border-2 ${
           getCompanyColor(experience.company).split(" ")[0]
         } rounded-full mr-4 flex-shrink-0`}
       >
@@ -106,13 +106,13 @@ const TimelineItem: React.FC<{ experience: any; isLast: boolean }> = ({
       <div className="flex-1 pb-8">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-1">
+            <h3 className="text-lg font-bold text-gray-800 d2:text-white mb-1">
               {experience.position}
             </h3>
-            <div className="inline-block px-2 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 mb-2">
+            <div className="inline-block px-2 py-1 rounded-full text-sm font-medium bg-gray-100 d2:bg-gray-600 text-gray-700 d2:text-gray-300 mb-2">
               {experience.company}
             </div>
-            <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm space-x-4 mb-3">
+            <div className="flex items-center text-gray-600 d2:text-gray-400 text-sm space-x-4 mb-3">
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-1" />
                 {experience.location}
@@ -138,7 +138,7 @@ const TimelineItem: React.FC<{ experience: any; isLast: boolean }> = ({
                   getCompanyColor(experience.company).split(" ")[1]
                 } mt-2 mr-3 flex-shrink-0`}
               ></div>
-              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <p className="text-gray-700 d2:text-gray-300 text-sm leading-relaxed">
                 {highlight}
               </p>
             </div>

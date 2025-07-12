@@ -1,0 +1,2 @@
+... deploy command
+DEPLOY_TARGET=GH_PAGES npm run build && touch out/.nojekyll && npm run deploy

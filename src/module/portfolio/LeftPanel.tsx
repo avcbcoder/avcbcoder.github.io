@@ -1,113 +1,100 @@
 import React from "react";
-import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
+import { personalInfo } from "@/data/ankit";
+import Image from "next/image";
 
-const LeftPanel: React.FC = () => {
+const ProfileAvatar = () => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-4 transition-all duration-300 border border-gray-200 dark:border-gray-700">
-      <div className="text-center">
-        {/* Profile Picture */}
-        <div className="relative mx-auto mb-4">
-          <div className="w-20 h-20 mx-auto rounded-full bg-gray-200 dark:bg-gray-700 p-0.5">
-            <img
-              src="/anverma/profile.jpg"
-              alt="Ankit Verma"
-              className="w-full h-full rounded-full object-cover"
-            />
-          </div>
-          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white dark:border-gray-800"></div>
-        </div>
-
-        {/* Name and Title */}
-        <h1 className="text-xl font-bold text-gray-800 dark:text-white mb-1">
-          Ankit Verma
-        </h1>
-        <p className="text-sm text-blue-600 dark:text-blue-400 mb-1">
-          Software Engineer
-        </p>
-
-        {/* Location */}
-        <div className="flex items-center justify-center text-gray-600 dark:text-gray-400 mb-6">
-          <MapPin className="w-3 h-3 mr-1" />
-          <span className="text-xs">Remote, India</span>
-        </div>
-
-        {/* Bio */}
-        <div className="mb-6">
-          <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-            Passionate software engineer with 3+ years of experience building
-            scalable systems at top tech companies. Specialized in full-stack
-            development, AI/ML integration, and system optimization.
-          </p>
-        </div>
-
-        {/* Social Links */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-center space-x-1">
-            <SocialLink
-              href="tel:+918700234342"
-              icon={<Phone className="w-4 h-4" />}
-              color="green"
-            />
-            <SocialLink
-              href="mailto:ankitvermamat@gmail.com"
-              icon={<Mail className="w-4 h-4" />}
-              color="blue"
-            />
-            <SocialLink
-              href="https://linkedin.com/in/ankitvermamat"
-              icon={<Linkedin className="w-4 h-4" />}
-              color="blue"
-            />
-            <SocialLink
-              href="https://github.com/ankitvermamat"
-              icon={<Github className="w-4 h-4" />}
-              color="gray"
-            />
-          </div>
-        </div>
-
-        {/* Skills Preview */}
-        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-2">
-            Tech Stack
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {["Java", "Python", "React", "AWS", "Node.js"].map((skill) => (
-              <span
-                key={skill}
-                className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
+    <div className="flex flex-col items-center">
+      <div className="relative w-32 h-32">
+        <Image
+          src="/profile.jpg"
+          alt="Ankit Verma"
+          className="rounded-full object-cover"
+          layout="fill"
+        />
+        <div className="absolute bottom-1 right-1 w-4 h-4 bg-gray-500 rounded-full shadow-lg border-2 border-white" />
       </div>
     </div>
   );
 };
 
-const SocialLink: React.FC<{
-  href: string;
-  icon: React.ReactNode;
-  color: "green" | "blue" | "gray";
-}> = ({ href, icon, color }) => {
-  const colorClasses = {
-    green:
-      "hover:bg-green-50 dark:hover:bg-green-900 hover:text-green-600 dark:hover:text-green-400",
-    blue: "hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400",
-    gray: "hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200",
+const LeftPanel: React.FC = () => {
+  const getIcon = (iconName: string) => {
+    switch (iconName) {
+      case "linkedin":
+        return <Linkedin className="w-5 h-5" />;
+      case "github":
+        return <Github className="w-5 h-5" />;
+      case "twitter":
+        return <Twitter className="w-5 h-5" />;
+      default:
+        return null;
+    }
   };
 
+  const gradient =
+    "bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 d2:from-gray-900 d2:via-blue-900 d2:to-purple-900";
+
   return (
-    <a
-      href={href}
-      className={`flex items-center justify-center p-2 rounded-lg transition-all duration-200 text-gray-600 dark:text-gray-400 ${colorClasses[color]}`}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {icon}
-    </a>
+    <div className="border border-gray-300 rounded-lg d2:border-gray-700 h-full bg-white p-8 flex flex-col justify-center items-center text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+      {/* Profile content */}
+      <div className="relative z-10 text-center max-w-sm">
+        {/* Avatar */}
+
+        <div className="mb-2">
+          <ProfileAvatar />
+        </div>
+        {/* Name and title */}
+        <h1 className="text-3xl font-semibold mb-2 text-gray-900">
+          {personalInfo.name}
+        </h1>
+        <p className="text-lg text-blue-100 mb-6 font-medium text-gray-600">
+          {personalInfo.title}
+        </p>
+
+        {/* Bio */}
+        <p className="text-sm text-blue-100/80 mb-8 leading-relaxed text-gray-600">
+          {personalInfo.bio}
+        </p>
+
+        {/* Contact info */}
+        <div className="space-y-3 mb-8">
+          <div className="flex items-center gap-3 text-sm text-gray-900 transition-colors">
+            <Mail className="w-4 h-4 flex-shrink-0" />
+            <span className="truncate">{personalInfo.email}</span>
+          </div>
+          <div className="flex items-center gap-3 text-sm text-gray-900 transition-colors">
+            <Phone className="w-4 h-4 flex-shrink-0" />
+            <span>{personalInfo.phone}</span>
+          </div>
+          <div className="flex items-center gap-3 text-sm text-gray-900 transition-colors">
+            <MapPin className="w-4 h-4 flex-shrink-0" />
+            <span>{personalInfo.location}</span>
+          </div>
+        </div>
+
+        {/* Social links */}
+        <div className="flex gap-4 justify-center">
+          {personalInfo.socialLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-black hover:bg-black/90 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-6 backdrop-blur-sm border border-white/20"
+            >
+              {getIcon(link.icon)}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,128 +1,225 @@
 import React from "react";
-import { ExternalLink, Github, Zap, Users } from "lucide-react";
+import { Github, ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { projects } from "@/data/ankit";
 
-const ProjectsTab: React.FC = () => {
-  const projects = [
-    {
-      title: "AI Powered Interview Simulator",
-      description:
-        "AI-driven platform that simulates real-time mock interviews, provides coding practice, and delivers personalized feedback using models like Llama and DeepSeek.",
-      technologies: ["AI/ML", "Llama", "DeepSeek", "React", "Node.js"],
-      link: "#",
-      github: "#",
-      highlights: [
-        "Real-time mock interview simulation",
-        "Personalized feedback system",
-        "Coding practice integration",
-        "AI-powered assessment",
-      ],
-      color: "blue",
-    },
-    {
-      title: "Collab - Web App",
-      description:
-        "A collaborative web application enabling users to host watch parties, allowing them to watch YouTube videos and listen to Spotify songs with others in real time.",
-      technologies: [
-        "React",
-        "Node.js",
-        "WebSockets",
-        "YouTube API",
-        "Spotify API",
-      ],
-      link: "#",
-      github: "#",
-      highlights: [
-        "Real-time synchronization",
-        "Multi-platform support",
-        "Social watch parties",
-        "Cross-platform compatibility",
-      ],
-      color: "purple",
-    },
-  ];
+// === ProjectCard Component ===
+import { useRef } from "react";
 
-  return (
-    <div className="space-y-6">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-1">
-          Featured Projects
-        </h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Innovative solutions built with cutting-edge technology
-        </p>
-      </div>
+const ProjectCard = ({ project, index, onHover, onLeave }) => {
+  const containerRef = useRef(null);
 
-      <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-1">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
-      </div>
-    </div>
-  );
-};
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-const ProjectCard: React.FC<{ project: any }> = ({ project }) => {
-  const colorClasses = {
-    blue: "from-blue-500 to-cyan-600",
-    purple: "from-purple-500 to-pink-600",
+    // Clamp values between 0 and 100
+    const clampedX = Math.min(100, Math.max(0, x));
+    const clampedY = Math.min(100, Math.max(0, y));
+
+    onHover(project.hoverImage, {
+      x: Math.ceil(clampedX),
+      y: Math.ceil(clampedY),
+    });
   };
 
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-600 hover:shadow-md transition-all duration-300">
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
-            {project.title}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-xs leading-relaxed mb-3">
-            {project.description}
-          </p>
-        </div>
-        <div className="flex items-center space-x-1 ml-2">
-          <a
-            href={project.link}
-            className="p-1.5 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-md hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
-          >
-            <ExternalLink className="w-3 h-3" />
-          </a>
-          <a
-            href={project.github}
-            className="p-1.5 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-400 rounded-md hover:bg-gray-200 dark:hover:bg-gray-500 transition-colors duration-200"
-          >
-            <Github className="w-3 h-3" />
-          </a>
-        </div>
-      </div>
-
-      <div className="mb-3">
-        <h4 className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">
-          Key Features
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-          {project.highlights.map((highlight: string, idx: number) => (
-            <div
-              key={idx}
-              className="flex items-center text-xs text-gray-600 dark:text-gray-400"
-            >
-              <Zap className="w-2 h-2 mr-1 text-yellow-500" />
-              {highlight}
+    <div
+      ref={containerRef}
+      className="group relative overflow-hidden bg-white border border-gray-200 hover:border-gray-200 transition-all duration-500 rounded-md overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={onLeave}
+    >
+      <div className="flex w-full">
+        {/* Image Section */}
+        <div className="relative w-2/5 overflow-hidden">
+          <div className="relative h-full aspect-[16/9] overflow-hidden">
+            <img
+              src={project.backgroundImage}
+              alt={project.title}
+              className="w-auto h-full object-left transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
+            <div className="absolute top-6 left-6">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                <span className="text-white text-sm font-medium">
+                  {project.status}
+                </span>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-wrap gap-2">
-        {project.technologies.map((tech: string, idx: number) => (
-          <span
-            key={idx}
-            className="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300"
-          >
-            {tech}
-          </span>
-        ))}
+        {/* Content Section */}
+        <div className="w-3/5 p-8 flex flex-col">
+          {/* Title and Description */}
+          <div className="mb-6">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3 leading-tight">
+              {project.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              {project.description}
+            </p>
+          </div>
+
+          {/* Metrics */}
+          <div className="grid grid-cols-4 gap-2 mb-8">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">
+                {project.metrics.views}
+              </div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">
+                Views
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">0 😔</div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">
+                Users
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">
+                {project.metrics.built}
+              </div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">
+                Built
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-gray-900">
+                {project.metrics.lastUpdated}
+              </div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">
+                Updated
+              </div>
+            </div>
+            {/* <div className="flex items-center px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
+              <Calendar className="w-4 h-4 text-gray-500 mr-2" />
+              <div>
+                <div className="text-xs text-gray-500 uppercase tracking-wide">
+                  Built
+                </div>
+                <div className="text-sm font-medium text-gray-900">
+                  {project.metrics.built}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
+              <Clock className="w-4 h-4 text-gray-500 mr-2" />
+              <div>
+                <div className="text-xs text-gray-500 uppercase tracking-wide">
+                  Updated
+                </div>
+                <div className="text-sm font-medium text-gray-900">
+                  {project.metrics.lastUpdated}
+                </div>
+              </div>
+            </div> */}
+          </div>
+
+          {/* Tech Tags */}
+          <div className="mb-8">
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech, techIndex) => (
+                <span
+                  key={techIndex}
+                  className="px-3 py-1 text-sm text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="mt-auto flex items-center justify-between">
+            <div className="flex space-x-4">
+              <a
+                href={project.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors duration-200 group"
+              >
+                Open Project
+                <ArrowUpRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-2 border border-gray-300 text-gray-700 text-sm font-medium hover:border-gray-400 hover:text-gray-900 transition-colors duration-200"
+              >
+                <Github className="w-4 h-4 mr-2" />
+                View Code
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProjectsTab;
+// === App Component ===
+function App({ onProjectHover }: { onProjectHover: any }) {
+  // const [hoveredImage, setHoveredImage] = React.useState(null);
+  // const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+  const handleHover = (image, position) => {
+    // setHoveredImage(image);
+    // setMousePosition(position);
+    onProjectHover(image, position);
+  };
+
+  const handleLeave = () => {
+    // setHoveredImage(null);
+    onProjectHover("", { x: 0, y: 0 });
+  };
+
+  return (
+    <div className="min-h-screen relative">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">My Projects</h1>
+          <p className="text-lg text-gray-600">
+            {`A true engineer isn’t measured by the problems they solve, but by the products they build. I’ve created a few things outside of work. Let me know if any spark your interest.`}
+          </p>
+        </div>
+
+        <div className="space-y-8">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onHover={handleHover}
+              onLeave={handleLeave}
+            />
+          ))}
+        </div>
+
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-500">
+              All projects are live and actively monitored
+            </div>
+            <div className="flex items-center space-x-6 text-sm text-gray-500">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                <span>Live</span>
+              </div>
+              {/* <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                <span>Open Source</span>
+              </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
