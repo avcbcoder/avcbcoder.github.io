@@ -4,7 +4,7 @@ import { projects } from "@/data/ankit";
 
 // === ProjectCard Component ===
 import { useRef } from "react";
-import { IS_PROD } from "@/config";
+import { URL_PREFIX } from "@/config";
 
 const ProjectCard = ({ project, index, onHover, onLeave }) => {
   const containerRef = useRef<any>(null);
@@ -41,7 +41,7 @@ const ProjectCard = ({ project, index, onHover, onLeave }) => {
         <div className="relative w-2/5 overflow-hidden">
           <div className="relative h-full aspect-[16/9] overflow-hidden">
             <img
-              src={`${IS_PROD ? "/anverma" : ""}${project.backgroundImage}`}
+              src={`${URL_PREFIX}${project.backgroundImage}`}
               alt={project.title}
               className="w-auto h-full object-left transition-transform duration-700 group-hover:scale-105"
             />

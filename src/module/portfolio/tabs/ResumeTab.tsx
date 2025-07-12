@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { Download, Link as LinkIcon } from "lucide-react";
-import { IS_PROD } from "@/config";
+import { URL_PREFIX } from "@/config";
 
 const ResumeTab: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -39,10 +39,7 @@ const ResumeTab: React.FC = () => {
       <div className="w-full flex-1 overflow-auto px-4 py-4">
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
           <div className="flex justify-start">
-            <Viewer
-              fileUrl={(IS_PROD ? "/anverma" : "") + "/resume.pdf"}
-              defaultScale={1.1}
-            />
+            <Viewer fileUrl={URL_PREFIX + "/resume.pdf"} defaultScale={1.1} />
           </div>
         </Worker>
       </div>

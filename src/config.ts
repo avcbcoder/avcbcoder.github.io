@@ -1,1 +1,2 @@
-export const IS_PROD = true;
+export const IS_PROD = false;
+export const URL_PREFIX = "";

@@ -1,4 +1,4 @@
-import { IS_PROD } from "@/config";
+import { URL_PREFIX } from "@/config";
 
 const OverlayPreview = ({ overlayProject }: { overlayProject: any }) => {
   const { image: imageUrl, position } = overlayProject;
@@ -18,7 +18,7 @@ const OverlayPreview = ({ overlayProject }: { overlayProject: any }) => {
       }}
     >
       <img
-        src={(IS_PROD ? "/anverma" : "") + "/static/rehearsalgpt-landing.png"}
+        src={URL_PREFIX + "/static/rehearsalgpt-landing.png"}
         alt="Project preview"
         style={{
           width: "40vw",

@@ -7,8 +7,10 @@ const nextConfig = {
   images: {
     unoptimized: true, // disable image optimization
   },
-  basePath: isGithubPages ? "/anverma" : "",
-  assetPrefix: isGithubPages ? "/anverma/" : "",
+  // basePath: isGithubPages ? "/anverma" : "",
+  // assetPrefix: isGithubPages ? "/anverma/" : "",
+  basePath: "",
+  assetPrefix: "",
 };
 
 export default nextConfig;
