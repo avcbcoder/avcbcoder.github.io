@@ -2,13 +2,14 @@ import React from "react";
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 import { personalInfo } from "@/data/ankit";
 import Image from "next/image";
+import { IS_PROD } from "@/config";
 
 const ProfileAvatar = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-32 h-32">
         <Image
-          src="/profile.jpg"
+          src={IS_PROD ? "/anverma" : "" + "/profile.jpg"}
           alt="Ankit Verma"
           className="rounded-full object-cover"
           layout="fill"

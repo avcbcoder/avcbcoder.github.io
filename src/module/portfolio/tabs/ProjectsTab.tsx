@@ -4,11 +4,17 @@ import { projects } from "@/data/ankit";
 
 // === ProjectCard Component ===
 import { useRef } from "react";
+import { IS_PROD } from "@/config";
 
 const ProjectCard = ({ project, index, onHover, onLeave }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<any>(null);
 
   const handleMouseMove = (e) => {
+    if (
+      containerRef.current == null ||
+      containerRef.current.getBoundingClientRect == null
+    )
+      return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
@@ -35,7 +41,7 @@ const ProjectCard = ({ project, index, onHover, onLeave }) => {
         <div className="relative w-2/5 overflow-hidden">
           <div className="relative h-full aspect-[16/9] overflow-hidden">
             <img
-              src={project.backgroundImage}
+              src={`${IS_PROD ? "/anverma" : ""}${project.backgroundImage}`}
               alt={project.title}
               className="w-auto h-full object-left transition-transform duration-700 group-hover:scale-105"
             />
